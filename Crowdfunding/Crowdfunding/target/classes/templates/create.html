@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfunding | Projet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+    body { background: #020617; color: white; }
+    .table { color: white !important; }
+    .table-dark { --bs-table-bg: rgba(30, 41, 59, 0.5); }
+    .glass-card {
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+    }
+    .btn-action {
+        border-radius: 8px;
+        padding: 5px 15px;
+        transition: 0.3s;
+    }
+    .btn-delete { color: #ef4444; border: 1px solid #ef4444; }
+    .btn-delete:hover { background: #ef4444; color: white; }
+    
+    .app-name { color: #ffc107 !important; font-weight: 800; }
+    h1, h2, th, td { color: white !important; }
+    ::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.form-control:focus {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5) !important;
+}
+</style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="glass-card">
+                <h2 class="fw-bold mb-4 text-center">
+                    <span th:text="${campaign.id != null} ? '📝 Modifier le projet' : '🚀 Lancer un projet'"></span>
+                </h2>
+                <p class="text-center text-muted mb-5">Configurez les détails de votre campagne.</p>
+
+              <form th:action="@{/create}" method="post" class="form-glass shadow-lg">
+    <h2 class="text-center mb-4 fw-bold">Lancer un projet</h2>
+
+    <div class="mb-3">
+        <label class="form-label">Titre du projet</label>
+        <input type="text" name="title" class="form-control" placeholder="Ex: Financer un puits" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description détaillée</label>
+        <textarea name="description" class="form-control" rows="4" placeholder="Décrivez votre projet..." required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Objectif (HTG)</label>
+        <input type="number" name="goalAmount" class="form-control" placeholder="Ex: 12000" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Catégorie</label>
+        <select name="category" class="form-select">
+            <option value="Médical">Médical</option>
+            <option value="Éducation">Éducation</option>
+            <option value="Technologie">Technologie</option>
+            <option value="Social">Social</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Lien de l'image (URL)</label>
+        <input type="url" name="imageUrl" class="form-control" placeholder="https://images.unsplash.com/...">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
+        <i class="bi bi-rocket-takeoff me-2"></i> CRÉER LA CAMPAGNE
+    </button>
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
